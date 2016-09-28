@@ -1,0 +1,13 @@
+从Github上下载一个maven项目，eclipse3.6 Import Existing Maven ProJect, 
+新建tomcat server后，找不到publish的工程。需要将项目转为web工程。
+右键项目，选择Project Facets， 选择Dynamic Web Module 2.5(3对应JDK7+，tomcat7+)，Java 1.6， Revert。
+tomcat serverpublish后，启动，报错：java.lang.ClassNotFoundException: org.springframework.web.context.ContextLoaderListener
+
+检查maven依赖包，该类所在的spring-web**.jar包存在，可能maven依赖jar包没正常部署，执行一下操作：
+右键点击项目--选择Properties，选择Deployment Assembly,在右边点击Add按钮，在弹出的窗口中选择Java Build Path Entries，将Maven Dependencies添加到WEB应用结构中。
+再次启动tomcat，报另一个错误：java.lang.ClassCastException: org.springframework.web.filter.DelegatingFilterProxy cannot be cast to javax.servlet.Filter
+
+注释掉 servlet-api.jar与jsp-api.jar （scope设置为provide不管用）
+
+再次启动，不抱错了。
+

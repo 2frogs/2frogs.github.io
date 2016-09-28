@@ -1,0 +1,53 @@
+pom.xml中根据情况增加修改下列代码， goals= clean install
+```
+<build>
+<resources>
+  <resource>
+    <targetPath></targetPath>
+    <filtering>false</filtering>
+    <directory>${basedir}/src/main/config</directory>
+    <includes>
+       <include>**/*.xml</include>  
+       <include>**/*.properties</include>  
+    </includes>
+  </resource> 
+  <resource>
+    <directory>${basedir}/src/main/java</directory>
+    <includes>
+      <include>**/*.hbm.xml</include>
+    </includes>
+  </resource>                 
+</resources>
+<plugins>
+	<plugin>  
+	    <groupId>org.apache.maven.plugins</groupId>  
+	    <artifactId>maven-jar-plugin</artifactId>  
+	    <configuration>  
+	    <archive>  
+	    <manifest>  
+	    <addClasspath>true</addClasspath>  
+	    <classpathPrefix>lib/</classpathPrefix>  
+	    <mainClass>com.ums.tms.importkey.ImportKeyTxtMain</mainClass>
+	    </manifest>  
+	    </archive>  
+	    </configuration>  
+	</plugin>     
+  <plugin>
+     <groupId>org.apache.maven.plugins</groupId> 
+     <artifactId>maven-dependency-plugin</artifactId> 
+     <executions> 
+          <execution> 
+           <id>copy-dependencies</id> 
+           <phase>package</phase> s
+           <goals> 
+            <goal>copy-dependencies</goal> 
+           </goals>           
+           <configuration> 
+            <outputDirectory>${basedir}/target/classes/lib</outputDirectory> 
+           </configuration> 
+          </execution> 
+         </executions> 
+    </plugin>
+</plugins>
+</build>
+```
