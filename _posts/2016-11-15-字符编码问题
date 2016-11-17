@@ -1,0 +1,4 @@
+GB18030兼容GBK，GB2312，日文，韩文
+数据库UTF-8，原GBK编码JSP也没什么问题，JSP charset改成UTF-8，因为没做统一国际化处理，反倒一堆问题。 
+LC_ALL配置会覆盖其它LC开头的配置，包括LANG
+proc*C语言程序，以前跑在GBK编码中环境中,切换到数据库UTF-8，环境也是en_US.UTF-8后，各种乱码。发现将LC_ALL设置成GB18030， NLS_LANG设置成ZHSGBK后，重新编译， 乱码问题解决。
