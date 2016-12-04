@@ -1,0 +1,1 @@
+参考资源:  http://www.ibm.com/developerworks/cn/java/j-lo-shiro/

@@ -1,0 +1,26 @@
+1. 环境
+   Eclipse Mars， JDK8， Tomcat7   Maven3.0.4
+2. 新建MAVEN项目，New Maven Project界面勾选Create a simple Project(skip archetype selection).
+   点击Next， 填写groupId等信息， 点击Finish
+3. 右键项目Properties， 选择Project Faces。 勾选设置Java，点击Apply 
+4. 去掉勾选Dynamic Web Module， 点Apply。 再勾选Dynamic Web Module， 下面会出现Futher Configuration avaiable
+   勾选 Generate web.xml,  设置Content directory 为 /src/main/webapp, 点击确认， 再点击Apply。
+5. 新建index.jsp, 发布到tomcat测试。tomcat server选择Use Tomcat installation， Publish module Context
+   在tomcat的 wtpwebapps 会看到发布的工程目录
+-------------------------------------------------------------------
+6，配置pom.xml, 加入相关的dependency(eclipse 配置本地maven目录)
+7. 配置spring配置文件，spring-context.xml, spring-mvc.xml,    
+    web.xml配置contextConfigLocation和springmvc的servlet及ContextLoaderListener
+8. 测试一个简单的页面(spring MVC)。
+9. 配置统一日志/异常处理:
+    spring-MVC 统一异常处理： 实现HandlerExceptionResolver
+    统一日志处理： 实现 MethodInterceptor， @Controller未生效。 @Resource注入的类生效。
+    通过aspect注解实现。
+    controller未生效因为controller已经被代理了。在spring-mvc.xml中加入：<aop:aspectj-autoproxy proxy-target-class="true" />  
+
+ 10. 加入dubbo配置: 加入依赖包，加入dubbo配置文件， 加入远程bizjar包
+ 11. 服务端新建maven工程(pom打包，统一管理pom.xml)，增加api模块， core/service模块。
+
+
+
+
